@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { loginSchema, signupSchema } from '../utils/validation';
+import { loginSchema, signupSchema } from '../../utils/validation';
+import { Input } from './Input';
 
 const Login = () => {
   const [form, setForm] = useState('Sign Up');
@@ -35,44 +35,36 @@ const Login = () => {
           className="flex flex-col w-[90%]"
         >
           {form == 'Sign Up' && (
-            <input
-              type="text"
+            <Input
               placeholder="Your Name"
-              className="px-3 py-3 border-2 border-black rounded-md"
-              {...register('name')}
+              type="text"
+              name="name"
+              error={errors.name}
+              register={register}
             />
           )}
-          {form == 'Sign Up' && errors.name && (
-            <p className="text-red-500">{errors.name.message}</p>
-          )}
-          <input
+          <Input
             type="email"
             placeholder="Email"
-            className="px-3 py-3 border-2 border-black rounded-md mt-5"
-            {...register('email')}
+            name="email"
+            error={errors.email}
+            register={register}
           />
-          {errors.email && (
-            <p className="text-red-500">{errors.email.message}</p>
-          )}
-          <input
+          <Input
             type="password"
             placeholder="******"
-            className="px-3 py-3 border-2 border-black rounded-md mt-5"
-            {...register('password')}
+            name="password"
+            error={errors.password}
+            register={register}
           />
-          {errors.password && (
-            <p className="text-red-500">{errors.password.message}</p>
-          )}
           {form == 'Sign Up' && (
-            <input
+            <Input
               type="password"
               placeholder="******"
-              className="px-3 py-3 border-2 border-black rounded-md mt-5"
-              {...register('confirmPassword')}
+              name="confirmPassword"
+              error={errors.confirmPassword}
+              register={register}
             />
-          )}
-          {errors.confirmPassword && (
-            <p className="text-red-500">{errors.confirmPassword.message}</p>
           )}
           <button
             type="submit"

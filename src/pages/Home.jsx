@@ -1,12 +1,16 @@
 import Body from '../components/Body';
 import Footer from '../components/Footer';
+import Login from '../components/Login';
 import Navbar from '../components/Navbar';
+import Product from '../components/Product';
 
 const Home = () => {
   return (
     <div>
       <Navbar />
-      <Body />
+      {/* <Body /> */}
+      {/* <Product /> */}
+      <Login />
       <Footer />
     </div>
   );

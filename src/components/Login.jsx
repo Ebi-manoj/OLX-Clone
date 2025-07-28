@@ -1,10 +1,25 @@
 import { useState } from 'react';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema, signupSchema } from '../utils/validation';
 
 const Login = () => {
   const [form, setForm] = useState('Sign Up');
+  const schema = form == 'Sign Up' ? signupSchema : loginSchema;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({ resolver: zodResolver(schema) });
 
+  function onSubmit(data) {
+    console.log(data);
+  }
   function handleSwitch() {
     setForm(form == 'Sign Up' ? 'Sign In' : 'Sign Up');
+    reset();
   }
 
   return (
@@ -15,32 +30,54 @@ const Login = () => {
           alt=""
           className="w-[100px]"
         />
-        <form action="" className="flex flex-col w-[90%]">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col w-[90%]"
+        >
           {form == 'Sign Up' && (
             <input
               type="text"
               placeholder="Your Name"
-              className="px-3 py-3 border-2 border-black rounded-md mb-5"
+              className="px-3 py-3 border-2 border-black rounded-md"
+              {...register('name')}
             />
+          )}
+          {form == 'Sign Up' && errors.name && (
+            <p className="text-red-500">{errors.name.message}</p>
           )}
           <input
             type="email"
             placeholder="Email"
-            className="px-3 py-3 border-2 border-black rounded-md mb-5"
+            className="px-3 py-3 border-2 border-black rounded-md mt-5"
+            {...register('email')}
           />
+          {errors.email && (
+            <p className="text-red-500">{errors.email.message}</p>
+          )}
           <input
             type="password"
             placeholder="******"
-            className="px-3 py-3 border-2 border-black rounded-md mb-5"
+            className="px-3 py-3 border-2 border-black rounded-md mt-5"
+            {...register('password')}
           />
+          {errors.password && (
+            <p className="text-red-500">{errors.password.message}</p>
+          )}
           {form == 'Sign Up' && (
             <input
               type="password"
               placeholder="******"
-              className="px-3 py-3 border-2 border-black rounded-md mb-5"
+              className="px-3 py-3 border-2 border-black rounded-md mt-5"
+              {...register('confirmPassword')}
             />
           )}
-          <button className="bg-blue-400 text-black px-3 py-3 text-lg font-bold mb-3 cursor-pointer">
+          {errors.confirmPassword && (
+            <p className="text-red-500">{errors.confirmPassword.message}</p>
+          )}
+          <button
+            type="submit"
+            className="bg-blue-400 text-black px-3 py-3 text-lg font-bold mt-5 mb-3 cursor-pointer"
+          >
             {form}
           </button>
         </form>

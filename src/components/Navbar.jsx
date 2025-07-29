@@ -7,7 +7,7 @@ const Navbar = () => {
   console.log('Navbar loaded');
   const navigate = useNavigate();
   const { currentUser, loading } = useUser();
-  console.log('current user', currentUser);
+  console.log('current user', currentUser, currentUser?.displayName);
   const name = currentUser?.displayName || '';
   console.log(name);
   const nickName = name ? name.slice(0, 2).toUpperCase() : 'AB';

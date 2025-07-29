@@ -25,3 +25,13 @@ export const loginSchema = z.object({
   email: z.string().email('Invalid email'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
 });
+
+export const productSchema = z.object({
+  name: z.string().min(3, 'Product name must be at least 3 characters.'),
+  price: z.number('Price is required').min(1, 'Price must be at least 1'),
+  description: z
+    .string()
+    .min(10, 'Description must be at least 10 characters.'),
+  address: z.string().min(5, 'Address must be at least 5 characters.'),
+  file: z.any().refine(file => file?.length > 0, 'Image is required'),
+});

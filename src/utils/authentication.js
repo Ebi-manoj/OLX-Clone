@@ -17,7 +17,7 @@ export const signupUser = async (name, email, password) => {
     await updateProfile(user, {
       displayName: name,
     });
-    await auth.currentUser.reload();
+    await user.reload();
     console.log('signeup', user);
   } catch (error) {
     console.log('Error in signup', error.message);

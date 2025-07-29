@@ -4,13 +4,14 @@ import { Popoverwrapper } from './Popover';
 import { useUser } from '../context/UserContext';
 
 const Navbar = () => {
+  console.log('Navbar loaded');
   const navigate = useNavigate();
   const { currentUser, loading } = useUser();
-
+  console.log('current user', currentUser);
   const name = currentUser?.displayName || '';
-  console.log('Nameme', name);
+  console.log(name);
   const nickName = name ? name.slice(0, 2).toUpperCase() : 'AB';
-  console.log(currentUser);
+
   return (
     <div className="flex gap-5 p-4 py-2 items-center bg-[#EFF1F3] ">
       <img

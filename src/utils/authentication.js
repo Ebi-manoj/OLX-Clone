@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
   updateProfile,
 } from 'firebase/auth';
 import { auth } from '../config/firebase';
@@ -16,6 +17,7 @@ export const signupUser = async (name, email, password) => {
     await updateProfile(user, {
       displayName: name,
     });
+    await auth.currentUser.reload();
     console.log('signeup', user);
   } catch (error) {
     console.log('Error in signup', error.message);
@@ -34,3 +36,5 @@ export const signinUser = async (email, password) => {
     console.log('Error in Sign in', error.message);
   }
 };
+
+export const logout = () => signOut(auth);

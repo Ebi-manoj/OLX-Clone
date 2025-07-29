@@ -5,6 +5,7 @@ import Login from './components/Login/Login';
 import Navbar from './components/Navbar';
 import Product from './components/Product';
 import Sell from './components/Sell';
+import { Protected } from './components/Protected';
 
 const MyLayout = () => {
   return (
@@ -35,7 +36,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: '/sell',
-        element: <Sell />,
+        element: (
+          <Protected>
+            <Sell />
+          </Protected>
+        ),
       },
     ],
   },

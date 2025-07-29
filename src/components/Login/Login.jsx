@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema, signupSchema } from '../../utils/validation';
 import { Input } from './Input';
-import { signupUser } from '../../utils/authentication';
+import { signinUser, signupUser } from '../../utils/authentication';
+import { useUser } from '../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const [form, setForm] = useState('Sign Up');
+  const [form, setForm] = useState('Sign In');
   const schema = form == 'Sign Up' ? signupSchema : loginSchema;
+  const { currentUser } = useUser();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (currentUser) navigate('/');
+  }, [currentUser]);
   const {
     register,
     handleSubmit,
@@ -16,11 +23,12 @@ const Login = () => {
   } = useForm({ resolver: zodResolver(schema) });
 
   function onSubmit(data) {
+    const { name, email, password } = data;
     if (form == 'Sign Up') {
-      const { name, email, password } = data;
       signupUser(name, email, password);
       console.log('sign Up', data);
     } else {
+      signinUser(email, password);
       console.log('sign In', data);
     }
   }

@@ -1,4 +1,5 @@
-import { Button, Popover } from 'flowbite-react';
+import { Popover } from 'flowbite-react';
+import { logout } from '../utils/authentication';
 
 export function Popoverwrapper({ name, children }) {
   return (
@@ -18,7 +19,10 @@ export function Popoverwrapper({ name, children }) {
             <p className="cursor-pointer mb-2 mt-5 hover:text-gray-800 transition-all">
               My Ads
             </p>
-            <p className="cursor-pointer mb-2 mt-5  hover:text-gray-800 transition-all">
+            <p
+              onClick={logout}
+              className="cursor-pointer mb-2 mt-5  hover:text-gray-800 transition-all"
+            >
               Logout
             </p>
           </div>

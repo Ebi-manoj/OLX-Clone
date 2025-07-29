@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema, signupSchema } from '../../utils/validation';
 import { Input } from './Input';
+import { signupUser } from '../../utils/authentication';
 
 const Login = () => {
   const [form, setForm] = useState('Sign Up');
@@ -15,7 +16,13 @@ const Login = () => {
   } = useForm({ resolver: zodResolver(schema) });
 
   function onSubmit(data) {
-    console.log(data);
+    if (form == 'Sign Up') {
+      const { name, email, password } = data;
+      signupUser(name, email, password);
+      console.log('sign Up', data);
+    } else {
+      console.log('sign In', data);
+    }
   }
   function handleSwitch() {
     setForm(form == 'Sign Up' ? 'Sign In' : 'Sign Up');

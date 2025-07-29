@@ -1,5 +1,4 @@
 export const Input = ({ type, placeholder, name, error, register }) => {
-  console.log(register);
   return (
     <>
       <input

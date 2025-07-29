@@ -6,10 +6,12 @@ import { Input } from './Input';
 import { signinUser, signupUser } from '../../utils/authentication';
 import { useUser } from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { FaSpinner } from 'react-icons/fa';
 
 const Login = () => {
   const [form, setForm] = useState('Sign In');
   const schema = form == 'Sign Up' ? signupSchema : loginSchema;
+  const [isLoading, setisLoading] = useState(false);
   const { currentUser } = useUser();
   const navigate = useNavigate();
   useEffect(() => {
@@ -22,15 +24,17 @@ const Login = () => {
     reset,
   } = useForm({ resolver: zodResolver(schema) });
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
+    setisLoading(true);
     const { name, email, password } = data;
     if (form == 'Sign Up') {
-      signupUser(name, email, password);
+      await signupUser(name, email, password);
       console.log('sign Up', data);
     } else {
-      signinUser(email, password);
+      await signinUser(email, password);
       console.log('sign In', data);
     }
+    setisLoading(false);
   }
   function handleSwitch() {
     setForm(form == 'Sign Up' ? 'Sign In' : 'Sign Up');
@@ -85,7 +89,7 @@ const Login = () => {
             type="submit"
             className="bg-blue-400 text-black px-3 py-3 text-lg font-bold mt-5 mb-3 cursor-pointer"
           >
-            {form}
+            {isLoading ? <FaSpinner className="mx-auto animate-spin" /> : form}
           </button>
         </form>
         <p className="text-gray-500">

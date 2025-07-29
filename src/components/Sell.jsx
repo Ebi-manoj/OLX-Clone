@@ -1,26 +1,32 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
 import { MdAddAPhoto } from 'react-icons/md';
 import { productSchema } from '../utils/validation';
 import { uploadProduct } from '../utils/uploadProduct';
 import { useUser } from '../context/UserContext';
+import { useState } from 'react';
+import { FaSpinner } from 'react-icons/fa';
 
 const Sell = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(productSchema),
   });
 
   const { currentUser } = useUser();
+  const [isUploading, setisUploading] = useState(false);
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
+    setisUploading(true);
     console.log('Form Data:', data);
     const user = currentUser.displayName || 'unknown';
-    uploadProduct(data, user);
+    const successs = await uploadProduct(data, user);
+    successs && reset();
+    setisUploading(false);
   };
   return (
     <div className="w-full min-h-screen flex justify-center items-center p-10 pt-5">
@@ -81,6 +87,7 @@ const Sell = () => {
           </label>
           <input
             id="file-upload"
+            accept="image/*"
             type="file"
             className=""
             {...register('file')}
@@ -89,8 +96,15 @@ const Sell = () => {
         {errors.file && (
           <p className="text-red-600 text-sm mx-auto">{errors.file.message}</p>
         )}
-        <button className="px-2 py-3 bg-green-400 text-black mt-4 w-[80%] mx-auto rounded-sm">
-          Submit
+        <button
+          className="cursor-pointer px-2 py-3 bg-green-400 text-black mt-4 w-[80%] mx-auto rounded-sm "
+          disabled={isUploading}
+        >
+          {isUploading ? (
+            <FaSpinner className="mx-auto animate-spin" />
+          ) : (
+            'Submit'
+          )}
         </button>
       </form>
     </div>

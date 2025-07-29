@@ -6,10 +6,12 @@ import Navbar from './components/Navbar';
 import Product from './components/Product';
 import Sell from './components/Sell';
 import { Protected } from './components/Protected';
+import { ToastContainer } from 'react-toastify';
 
 const MyLayout = () => {
   return (
     <>
+      <ToastContainer theme="dark" />
       <Navbar />
       <Outlet />
       <Footer />

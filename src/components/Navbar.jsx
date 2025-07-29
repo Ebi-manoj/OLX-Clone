@@ -2,6 +2,7 @@ import { FaSearch, FaRegHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { Popoverwrapper } from './Popover';
 import { useUser } from '../context/UserContext';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
   console.log('Navbar loaded');

@@ -5,6 +5,7 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { auth } from '../config/firebase';
+import { toast } from 'react-toastify';
 
 export const signupUser = async (name, email, password) => {
   try {
@@ -33,6 +34,7 @@ export const signinUser = async (email, password) => {
     );
     const user = userCredintials.user;
   } catch (error) {
+    toast.error('Invalid Credintials');
     console.log('Error in Sign in', error.message);
   }
 };

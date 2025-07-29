@@ -1,7 +1,16 @@
 import { FaSearch, FaRegHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { Popoverwrapper } from './Popover';
+import { useUser } from '../context/UserContext';
+
 const Navbar = () => {
   const navigate = useNavigate();
+  const { currentUser, loading } = useUser();
+
+  const name = currentUser?.displayName || '';
+  console.log('Nameme', name);
+  const nickName = name ? name.slice(0, 2).toUpperCase() : 'AB';
+  console.log(currentUser);
   return (
     <div className="flex gap-5 p-4 py-2 items-center bg-[#EFF1F3] ">
       <img
@@ -20,23 +29,34 @@ const Navbar = () => {
       <div className="search-box flex justify-center items-center">
         <input
           type="text"
-          className="bg-white border-2 border-black py-3 px-2 w-[500px] rounded-l-sm"
+          className="bg-white border-2 border-black py-3 px-2 w-[450px] rounded-l-sm"
           placeholder="Find Cars,Mobiles Phones and more..."
         />
-        <div className="h-[52px] w-[52px] bg-black flex justify-center items-center border-y-2 border-r-2 border-black rounded-r-sm">
-          <FaSearch color="white" />
+        <div>
+          <div className="h-[52px] w-[52px] bg-black flex justify-center items-center border-y-2 border-r-2 border-black rounded-r-sm cursor-pointer">
+            <FaSearch color="white" />
+          </div>
         </div>
       </div>
       <select name="" id="" className="cursor-pointer font-semibold text-md">
         <option value="English">ENGLISH</option>
       </select>
       <FaRegHeart className="font-bold text-2xl cursor-pointer" />
-      <p
-        className="cursor-pointer font-bold underline"
-        onClick={() => navigate('/login')}
-      >
-        Login
-      </p>
+      {!currentUser || loading ? (
+        <p
+          className="cursor-pointer font-bold underline"
+          onClick={() => navigate('/login')}
+        >
+          Login
+        </p>
+      ) : (
+        <Popoverwrapper name={name}>
+          <div className="rounded-full w-10 h-10 bg-black text-white flex items-center justify-center cursor-pointer">
+            <p>{nickName}</p>
+          </div>
+        </Popoverwrapper>
+      )}
+
       <button
         className="cursor-pointer w-32 h-12 border-4 border-l-amber-300 border-t-blue-400 border-r-black border-b-green-400 rounded-full flex items-center justify-center"
         onClick={() => navigate('/sell')}

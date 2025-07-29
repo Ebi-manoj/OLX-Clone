@@ -5,7 +5,6 @@ import { useUser } from '../context/UserContext';
 
 const Body = () => {
   const user = useUser();
-  console.log(user);
   const { products, setProducts } = useProduct();
   return (
     <div className="w-full min-h-screen  p-10 grid grid-cols-4 gap-5">

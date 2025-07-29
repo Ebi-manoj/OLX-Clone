@@ -1,4 +1,4 @@
-const Card = () => {
+const Card = ({ product }) => {
   return (
     <div className="p-3 w-[290px] h-[320px] border-1 border-gray-100 rounded-sm flex flex-col items-center shadow-sm">
       <img

@@ -26,7 +26,7 @@ const appRouter = createBrowserRouter([
         element: <Body />,
       },
       {
-        path: '/product',
+        path: '/product/:id',
         element: <Product />,
       },
       {

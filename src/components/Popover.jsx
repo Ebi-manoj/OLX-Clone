@@ -1,7 +1,9 @@
 import { Popover } from 'flowbite-react';
 import { logout } from '../utils/authentication';
+import { useNavigate } from 'react-router-dom';
 
 export function Popoverwrapper({ name, children }) {
+  const navigate = useNavigate();
   return (
     <Popover
       aria-labelledby="default-popover"
@@ -16,7 +18,10 @@ export function Popoverwrapper({ name, children }) {
             </h3>
           </div>
           <div className="px-3 py-2">
-            <p className="cursor-pointer mb-2 mt-5 hover:text-gray-800 transition-all">
+            <p
+              className="cursor-pointer mb-2 mt-5 hover:text-gray-800 transition-all"
+              onClick={() => navigate('/myads')}
+            >
               My Ads
             </p>
             <p

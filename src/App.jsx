@@ -7,6 +7,7 @@ import Product from './components/Product';
 import Sell from './components/Sell';
 import { Protected } from './components/Protected';
 import { ToastContainer } from 'react-toastify';
+import Myads from './components/Myads';
 
 const MyLayout = () => {
   return (
@@ -41,6 +42,14 @@ const appRouter = createBrowserRouter([
         element: (
           <Protected>
             <Sell />
+          </Protected>
+        ),
+      },
+      {
+        path: '/myads',
+        element: (
+          <Protected>
+            <Myads />
           </Protected>
         ),
       },

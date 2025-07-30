@@ -2,7 +2,6 @@ import { FaSearch, FaRegHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { Popoverwrapper } from './Popover';
 import { useUser } from '../context/UserContext';
-import { toast } from 'react-toastify';
 
 const Navbar = () => {
   console.log('Navbar loaded');
@@ -24,14 +23,14 @@ const Navbar = () => {
       <select
         name=""
         id=""
-        className="bg-white border-2 border-black pl-4 pr-[14%] py-3 rounded-sm"
+        className="bg-white border-2 border-black pl-2 py-1 pr-[4] sm:pl-4 sm:pr-[14%] sm:py-3 rounded-sm"
       >
         <option value="India">India</option>
       </select>
-      <div className="search-box flex justify-center items-center">
+      <div className="search-box  justify-center items-center sm:flex hidden">
         <input
           type="text"
-          className="bg-white border-2 border-black py-3 px-2 w-[450px] rounded-l-sm"
+          className="bg-white border-2 border-black py-3 px-2 w-[450px] rounded-l-sm "
           placeholder="Find Cars,Mobiles Phones and more..."
         />
         <div>
@@ -60,7 +59,7 @@ const Navbar = () => {
       )}
 
       <button
-        className="cursor-pointer w-32 h-12 border-4 border-l-amber-300 border-t-blue-400 border-r-black border-b-green-400 rounded-full flex items-center justify-center"
+        className="cursor-pointer w-25 h-10  sm:w-32 sm:h-12 border-4 border-l-amber-300 border-t-blue-400 border-r-black border-b-green-400 rounded-full flex items-center justify-center"
         onClick={() => navigate('/sell')}
       >
         <span className="font-extrabold text-[30px] pb-1">+</span>

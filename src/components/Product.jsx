@@ -15,7 +15,7 @@ const Product = () => {
 
   return (
     <div className="flex justify-center w-full min-h-screen p-10 px-[5%]">
-      <div className="flex justify-center h-[500px] shadow-lg">
+      <div className="flex flex-col sm:flex-row justify-center items-center sm:items-start sm:h-[500px] shadow-lg">
         <div className="image w-1/2 h-full flex-1/2">
           <img src={imageUrl} className="w-full h-full object-contain" />
         </div>

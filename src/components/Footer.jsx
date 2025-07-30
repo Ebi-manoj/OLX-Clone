@@ -3,7 +3,7 @@ const Footer = () => {
   return (
     <div
       id="Footer"
-      className="p-5 pl-[3%] pb-[5%] bg-gray-50 grid grid-cols-5"
+      className="p-5 pl-[3%] pb-[5%] bg-gray-50 grid grid-cols-2 sm:grid-cols-5"
     >
       <ul>
         <li className="text-sm font-bold mb-3">POPULAR LOCATIONS</li>

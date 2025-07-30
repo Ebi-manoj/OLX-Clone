@@ -43,7 +43,7 @@ const Login = () => {
 
   return (
     <div className="w-full min-h-screen flex justify-center items-center">
-      <div className="form w-[40%] p-10 pt-0 flex flex-col justify-center items-center shadow-2xl rounded-sm">
+      <div className="form sm:w-[40%] p-10 pt-0 flex flex-col justify-center items-center shadow-2xl rounded-sm">
         <img
           src="https://statics.olx.in/external/base/img/olxLogo/olx_logo_2025.svg"
           alt=""

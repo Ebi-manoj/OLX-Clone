@@ -29,10 +29,10 @@ const Sell = () => {
     setisUploading(false);
   };
   return (
-    <div className="w-full min-h-screen flex justify-center items-center p-10 pt-5">
+    <div className="w-full min-h-screen flex justify-center items-center p-5 sm:p-10 pt-5">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="p-5 w-[50%] h-full flex flex-col rounded-lg shadow-2xl"
+        className="p-5 w-[90%] sm:w-[50%] h-full flex flex-col rounded-lg shadow-2xl"
       >
         <h1 className="text-center font-bold text-2xl mb-2">
           Create a Product to Sell
@@ -83,13 +83,13 @@ const Sell = () => {
             className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg cursor-pointer hover:bg-gray-700 transition"
           >
             <MdAddAPhoto className="text-xl" />
-            <span>Upload </span>
+            <span className="">Upload </span>
           </label>
           <input
             id="file-upload"
             accept="image/*"
             type="file"
-            className=""
+            className="sm:block hidden"
             {...register('file')}
           />
         </div>
